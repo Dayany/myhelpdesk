@@ -4,6 +4,7 @@ import MuiAppBar from "@mui/material/AppBar";
 import { Toolbar, Typography } from "@mui/material";
 import Main from "./components/Main/Main";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Users from "./components/Users/Users";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Router>
           <Switch>
             <Route path="/" exact component={Main} />
+            <Route path="/users" component={Users} />
           </Switch>
         </Router>
       </main>
