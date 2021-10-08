@@ -6,6 +6,8 @@ import Users from "./components/Users/Users";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { Box } from "@mui/system";
 import useStyles from "./styles";
+import { Container } from "@mui/material";
+import Departments from "./components/Departments/Departments";
 
 function App() {
   const classes = useStyles();
@@ -18,14 +20,17 @@ function App() {
           component="main"
           sx={{ flexGrow: 1, height: "100vh", overflow: "auto" }}
         >
-          <main>
-            <Router>
-              <Switch>
-                <Route path="/" exact component={Main} />
-                <Route path="/users" component={Users} />
-              </Switch>
-            </Router>
-          </main>
+          <Container maxWidth="lg" sx={{ mt: 12, mb: 12 }}>
+            <main>
+              <Router>
+                <Switch>
+                  <Route path="/" exact component={Main} />
+                  <Route path="/users" component={Users} />
+                  <Route path="/departments" component={Departments} />
+                </Switch>
+              </Router>
+            </main>
+          </Container>
         </Box>
       </Box>
     </>

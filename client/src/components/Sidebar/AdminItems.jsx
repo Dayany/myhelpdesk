@@ -21,7 +21,7 @@ const AdminItems = (
       </ListItemIcon>
       <ListItemText primary="Users" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component="a" href="/departments">
       <ListItemIcon>
         <AccountBalanceIcon />
       </ListItemIcon>
