@@ -14,7 +14,10 @@ function App() {
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <Sidebar />
-        <Box component="main" sx={classes.mainBox}>
+        <Box
+          component="main"
+          sx={{ flexGrow: 1, height: "100vh", overflow: "auto" }}
+        >
           <main>
             <Router>
               <Switch>
