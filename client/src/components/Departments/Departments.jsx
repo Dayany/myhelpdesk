@@ -7,18 +7,23 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import AddDepartment from "./AddDepartment";
 
 const Departments = () => {
-  const [departments, setDepartments] = useState([]);
+  const dispatch = useDispatch();
+  const departments = useSelector((state) => state.viewQuestion.question);
+  const loadDepartments = (departments) => {
+    dispatch({ type: "ADD_INITIAL_QUESTIONS", payload: departments });
+  };
   useEffect(() => {
     async function fetchUsers() {
       const response = await fetch(
         `${process.env.REACT_APP_API_SERVER}departments`
       );
       const json = await response.json();
-      setDepartments(json);
+      loadDepartments(json);
     }
     fetchUsers();
   }, []);
