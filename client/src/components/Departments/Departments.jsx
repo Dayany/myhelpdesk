@@ -1,5 +1,4 @@
 import {
-  Divider,
   Grid,
   Table,
   TableBody,
@@ -50,7 +49,7 @@ const Departments = () => {
           </TableHead>
           <TableBody>
             {departments?.map((row) => (
-              <TableRow key={row._id}>
+              <TableRow key={row.uuid}>
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.city}</TableCell>
                 <TableCell>{row.state}</TableCell>
