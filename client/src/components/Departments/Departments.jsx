@@ -13,19 +13,19 @@ import AddDepartment from "./AddDepartment";
 
 const Departments = () => {
   const dispatch = useDispatch();
-  const departments = useSelector((state) => state.viewQuestion.question);
+  const departments = useSelector((state) => state.departments.departments);
   const loadDepartments = (departments) => {
-    dispatch({ type: "ADD_INITIAL_QUESTIONS", payload: departments });
+    dispatch({ type: "ADD_INITIAL_DEPARTMENTS", payload: departments });
   };
   useEffect(() => {
-    async function fetchUsers() {
+    async function fetchDepartments() {
       const response = await fetch(
         `${process.env.REACT_APP_API_SERVER}departments`
       );
       const json = await response.json();
       loadDepartments(json);
     }
-    fetchUsers();
+    fetchDepartments();
   }, []);
   return (
     <Grid container spacing={3}>
