@@ -5,14 +5,14 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Users from "./components/Users/Users";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { Box } from "@mui/system";
-import useStyles from "./styles";
 import { Container } from "@mui/material";
 import Departments from "./components/Departments/Departments";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 function App() {
-  const classes = useStyles();
   return (
-    <>
+    <Provider store={store}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <Sidebar />
@@ -33,7 +33,7 @@ function App() {
           </Container>
         </Box>
       </Box>
-    </>
+    </Provider>
   );
 }
 
