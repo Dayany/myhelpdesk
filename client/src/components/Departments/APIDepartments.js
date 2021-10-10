@@ -2,7 +2,7 @@ import axiosAPI from "../../API";
 import store from "../../redux/store";
 
 export function createDepartment(department) {
-  axiosAPI.post("departments", department).then(getDepartments());
+  axiosAPI.post("departments", department).then((res) => getDepartments());
 }
 
 export function getDepartments() {

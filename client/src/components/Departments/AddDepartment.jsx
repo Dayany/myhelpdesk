@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Grid, TextField } from "@mui/material";
 import { generateUuid } from "../Helpers/Helpers";
-import { useDispatch } from "react-redux";
+import { createDepartment } from "./APIDepartments";
 
 const style = {
   position: "absolute",
@@ -23,7 +23,6 @@ export default function AddDepartment() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -37,26 +36,7 @@ export default function AddDepartment() {
     };
 
     createDepartment(department);
-  };
-
-  const addDepartment = (department) => {
-    dispatch({ type: "ADD_DEPARTMENT", payload: department });
-  };
-  const createDepartment = (department) => {
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(department),
-    };
-    fetch(
-      `${process.env.REACT_APP_API_SERVER}departments`,
-      requestOptions
-    ).then((response) => {
-      return response.json().then((data) => {
-        addDepartment(data);
-        setOpen(false);
-      });
-    });
+    setOpen(false);
   };
 
   return (
