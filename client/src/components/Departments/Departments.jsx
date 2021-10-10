@@ -8,25 +8,16 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import AddDepartment from "./AddDepartment";
+import { getDepartments } from "./APIDepartments";
 
 const Departments = () => {
-  const dispatch = useDispatch();
   const departments = useSelector((state) => state.departments.departments);
-  const loadDepartments = (departments) => {
-    dispatch({ type: "ADD_INITIAL_DEPARTMENTS", payload: departments });
-  };
   useEffect(() => {
-    async function fetchDepartments() {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_SERVER}departments`
-      );
-      const json = await response.json();
-      loadDepartments(json);
-    }
-    fetchDepartments();
+    getDepartments();
   }, []);
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>

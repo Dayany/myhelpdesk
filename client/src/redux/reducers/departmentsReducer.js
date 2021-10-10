@@ -5,8 +5,6 @@ export default function departmentsReducer(
   switch (action.type) {
     case "ADD_INITIAL_DEPARTMENTS":
       return { departments: [...action.payload] };
-    case "ADD_DEPARTMENT":
-      return { departments: [...state.departments, action.payload] };
     default:
       return state;
   }
