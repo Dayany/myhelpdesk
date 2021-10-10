@@ -1,25 +1,22 @@
-import { Container, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { getUsers } from "./APIUsers";
 
 const Users = () => {
-  const [users, setUsers] = useState(null);
+  const users = useSelector((state) => state.users.users);
   useEffect(() => {
-    async function fetchUsers() {
-      const response = await fetch(`${process.env.REACT_APP_API_SERVER}users`);
-      const json = await response.json();
-      setUsers(json);
-    }
-    fetchUsers();
+    getUsers();
   }, []);
 
   return (
-    <>
-      <Container maxWidth="lg">
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
         <Typography
           variant="h3"
           align="center"
@@ -28,6 +25,8 @@ const Users = () => {
         >
           Users
         </Typography>
+      </Grid>
+      <Grid item xs={12}>
         <Typography variant="h5">Current Users</Typography>
         <Table size="small">
           <TableHead>
@@ -49,8 +48,8 @@ const Users = () => {
             ))}
           </TableBody>
         </Table>
-      </Container>
-    </>
+      </Grid>
+    </Grid>
   );
 };
 
