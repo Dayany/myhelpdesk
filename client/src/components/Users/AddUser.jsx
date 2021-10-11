@@ -51,12 +51,16 @@ export default function AddUser() {
     setRole(event.target.value);
   };
   const handleSubmit = (event) => {
+    const departmentName = departments.filter((current) => {
+      if (current.uuid === department) return current.name;
+    })[0].name;
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const user = {
       uuid: generateUuid(),
       name: data.get("userFullName"),
       department,
+      departmentName,
       role,
       isActive: data.get("isActive"),
     };
@@ -116,7 +120,7 @@ export default function AddUser() {
                   >
                     {departments?.map((department) => {
                       return (
-                        <MenuItem value={department.name}>
+                        <MenuItem value={department.uuid}>
                           {department.name}
                         </MenuItem>
                       );

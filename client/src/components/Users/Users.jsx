@@ -45,7 +45,7 @@ const Users = () => {
             {users?.map((row) => (
               <TableRow key={row._id}>
                 <TableCell>{row.name}</TableCell>
-                <TableCell>{row.department}</TableCell>
+                <TableCell>{row.departmentName}</TableCell>
                 <TableCell>{ROLES[row.role]}</TableCell>
                 <TableCell>{row.isActive ? "Yes" : "No"}</TableCell>
               </TableRow>
