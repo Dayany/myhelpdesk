@@ -6,14 +6,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { ROLES } from "../../constants";
-import AddUser from "./AddUser";
-import { getUsers } from "./APIUsers";
+import AddEquipments from "./AddEquipments";
+import { getEquipments } from "./APIEquipments";
 
-const Users = () => {
-  const users = useSelector((state) => state.users.users);
+const Equipments = () => {
+  const equipments = useSelector((state) => state.equipments.equipments);
   useEffect(() => {
-    getUsers();
+    getEquipments();
   }, []);
 
   return (
@@ -25,29 +24,27 @@ const Users = () => {
           color="textPrimary"
           gutterBottom
         >
-          Users
+          Equipments
         </Typography>
       </Grid>
       <Grid item xs={2}>
-        <AddUser />
+        <AddEquipments />
       </Grid>
       <Grid item xs={12}>
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Name</TableCell>
+              <TableCell>Equipment Name</TableCell>
               <TableCell>Department</TableCell>
-              <TableCell>Role</TableCell>
-              <TableCell>Active?</TableCell>
+              <TableCell>Owned By:</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {users?.map((row) => (
+            {equipments?.map((row) => (
               <TableRow key={row.uuid}>
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.departmentName}</TableCell>
-                <TableCell>{ROLES[row.role]}</TableCell>
-                <TableCell>{row.isActive ? "Yes" : "No"}</TableCell>
+                <TableCell>{row.ownedByName}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -57,4 +54,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Equipments;

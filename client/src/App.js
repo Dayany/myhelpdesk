@@ -9,6 +9,7 @@ import { Container } from "@mui/material";
 import Departments from "./components/Departments/Departments";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import Equipments from "./components/Equipments/Equipments";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
                   <Route path="/" exact component={Main} />
                   <Route path="/users" component={Users} />
                   <Route path="/departments" component={Departments} />
+                  <Route path="/equipments" component={Equipments} />
                 </Switch>
               </Router>
             </main>
