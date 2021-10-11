@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,6 +6,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { ROLES } from "../../constants";
+import AddUser from "./AddUser";
 import { getUsers } from "./APIUsers";
 
 const Users = () => {
@@ -26,8 +28,10 @@ const Users = () => {
           Users
         </Typography>
       </Grid>
+      <Grid item xs={2}>
+        <AddUser />
+      </Grid>
       <Grid item xs={12}>
-        <Typography variant="h5">Current Users</Typography>
         <Table size="small">
           <TableHead>
             <TableRow>
@@ -42,7 +46,7 @@ const Users = () => {
               <TableRow key={row._id}>
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.department}</TableCell>
-                <TableCell>{row.role}</TableCell>
+                <TableCell>{ROLES[row.role]}</TableCell>
                 <TableCell>{row.isActive ? "Yes" : "No"}</TableCell>
               </TableRow>
             ))}
