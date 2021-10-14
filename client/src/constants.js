@@ -1,1 +1,2 @@
 export const ROLES = ["ADMINISTRATOR", "MANAGER", "EMPLOYEE"];
+export const STATUS = ["CREATED", "IN PROGRESS", "COMPLETED"];

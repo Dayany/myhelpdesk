@@ -10,6 +10,7 @@ import Departments from "./components/Departments/Departments";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import Equipments from "./components/Equipments/Equipments";
+import Jobs from "./components/Jobs/Jobs";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
                   <Route path="/users" component={Users} />
                   <Route path="/departments" component={Departments} />
                   <Route path="/equipments" component={Equipments} />
+                  <Route path="/jobs" component={Jobs} />
                 </Switch>
               </Router>
             </main>

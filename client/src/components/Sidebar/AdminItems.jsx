@@ -6,6 +6,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import PeopleIcon from "@mui/icons-material/People";
 import ComputerIcon from "@mui/icons-material/Computer";
+import WorkIcon from "@mui/icons-material/Work";
 
 const AdminItems = (
   <div>
@@ -32,6 +33,12 @@ const AdminItems = (
         <ComputerIcon />
       </ListItemIcon>
       <ListItemText primary="Equipments" />
+    </ListItem>
+    <ListItem button component="a" href="/jobs">
+      <ListItemIcon>
+        <WorkIcon />
+      </ListItemIcon>
+      <ListItemText primary="Jobs" />
     </ListItem>
   </div>
 );
