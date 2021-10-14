@@ -1,8 +1,6 @@
 import { Grid, Typography } from "@mui/material";
-import useStyles from "../../styles";
 
 const Main = () => {
-  const classes = useStyles();
   return (
     <>
       <Grid container spacing={3}>
