@@ -11,11 +11,18 @@ app.use(express.json());
 const usersRoute = require("./routes/users");
 
 mongoose.connect(
-  process.env.DB_CONNECTION,
+  process.env.MONGODB_URI,
   { useNewUrlParser: true, useUnifiedTopology: true },
-  () => console.log("Connected")
+  () => console.log("Connected to mongodb database")
 );
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  });
+}
 
 app.use("/users", usersRoute);
 
-app.listen(port, () => console.log("Ready"));
+app.listen(port, () => console.log(`Ready at port: ${[port]}`));
