@@ -4,12 +4,17 @@ const mongoose = require("mongoose");
 const path = require("path");
 const app = express();
 const port = process.env.PORT || 8080;
+const cors = require("cors");
+
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Import Routes
 const usersRoute = require("./routes/users");
+
+app.use("/api/users", usersRoute);
 
 mongoose.connect(
   process.env.MONGODB_URI,
@@ -23,7 +28,5 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname + "/client/build/index.html"));
   });
 }
-
-app.use("/users", usersRoute);
 
 app.listen(port, () => console.log(`Ready at port: ${[port]}`));
