@@ -11,7 +11,6 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { generateUuid } from "../Helpers/Helpers";
 import { createEquipments } from "./APIEquipments";
 import { getDepartments } from "../Departments/APIDepartments";
 import { useSelector } from "react-redux";
@@ -53,15 +52,14 @@ export default function AddEquipments() {
 
   const handleSubmit = (event) => {
     const ownedByName = users.filter((current) => {
-      if (current.uuid === ownedBy) return current.name;
+      if (current._id === ownedBy) return current.name;
     })[0].name;
     const departmentName = departments.filter((current) => {
-      if (current.uuid === department) return current.name;
+      if (current._id === department) return current.name;
     })[0].name;
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const equipment = {
-      uuid: generateUuid(),
       name: data.get("name"),
       department,
       departmentName,
@@ -124,10 +122,7 @@ export default function AddEquipments() {
                   >
                     {departments?.map((department) => {
                       return (
-                        <MenuItem
-                          value={department.uuid}
-                          name={department.name}
-                        >
+                        <MenuItem value={department._id} name={department.name}>
                           {department.name}
                         </MenuItem>
                       );
@@ -147,7 +142,7 @@ export default function AddEquipments() {
                   >
                     {users?.map((user) => {
                       return (
-                        <MenuItem value={user.uuid} name={user.name}>
+                        <MenuItem value={user._id} name={user.name}>
                           {user.name}
                         </MenuItem>
                       );
