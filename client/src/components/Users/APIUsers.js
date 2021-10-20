@@ -2,7 +2,7 @@ import axiosAPI from "../../API";
 import store from "../../redux/store";
 
 export function createUser(user) {
-  axiosAPI.post("users", user).then((res) => getUsers());
+  axiosAPI.post("users/register", user).then((res) => getUsers());
 }
 
 export function getUsers() {

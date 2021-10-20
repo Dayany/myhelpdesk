@@ -43,7 +43,7 @@ const Users = () => {
           </TableHead>
           <TableBody>
             {users?.map((row) => (
-              <TableRow key={row.uuid}>
+              <TableRow key={row._id}>
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.departmentName}</TableCell>
                 <TableCell>{ROLES[row.role]}</TableCell>

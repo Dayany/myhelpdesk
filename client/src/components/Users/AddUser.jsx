@@ -14,7 +14,6 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { generateUuid } from "../Helpers/Helpers";
 import { createUser } from "./APIUsers";
 import { getDepartments } from "../Departments/APIDepartments";
 import { useSelector } from "react-redux";
@@ -52,13 +51,15 @@ export default function AddUser() {
   };
   const handleSubmit = (event) => {
     const departmentName = departments.filter((current) => {
-      if (current.uuid === department) return current.name;
+      if (current._id === department) return current.name;
     })[0].name;
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+
     const user = {
-      uuid: generateUuid(),
       name: data.get("userFullName"),
+      username: data.get("username"),
+      password: data.get("password"),
       department,
       departmentName,
       role,
@@ -97,12 +98,34 @@ export default function AddUser() {
               </Grid>
               <Grid item xs={12} sm={12}>
                 <TextField
+                  autoComplete="username"
+                  name="username"
+                  required
+                  fullWidth
+                  id="username"
+                  label="User Name"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  name="password"
+                  required
+                  fullWidth
+                  type="password"
+                  id="password"
+                  label="Password"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <TextField
                   autoComplete="userFullName"
                   name="userFullName"
                   required
                   fullWidth
                   id="userFullName"
-                  label="User Name"
+                  label="User Full Name"
                   autoFocus
                 />
               </Grid>
@@ -120,7 +143,7 @@ export default function AddUser() {
                   >
                     {departments?.map((department) => {
                       return (
-                        <MenuItem value={department.uuid}>
+                        <MenuItem value={department._id}>
                           {department.name}
                         </MenuItem>
                       );
