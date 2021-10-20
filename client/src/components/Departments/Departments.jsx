@@ -45,7 +45,7 @@ const Departments = () => {
           </TableHead>
           <TableBody>
             {departments?.map((row) => (
-              <TableRow key={row.uuid}>
+              <TableRow key={row._id}>
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.city}</TableCell>
                 <TableCell>{row.state}</TableCell>
