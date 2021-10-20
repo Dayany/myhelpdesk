@@ -15,10 +15,12 @@ app.use(express.json());
 const usersRoute = require("./routes/users");
 const departmentsRoute = require("./routes/departments");
 const equipmentsRoute = require("./routes/equipments");
+const jobsRoute = require("./routes/jobs");
 
 app.use("/api/users", usersRoute);
 app.use("/api/departments", departmentsRoute);
 app.use("/api/equipments", equipmentsRoute);
+app.use("/api/jobs", jobsRoute);
 
 mongoose.connect(
   process.env.MONGODB_URI,
