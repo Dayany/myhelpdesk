@@ -14,9 +14,11 @@ app.use(express.json());
 //Import Routes
 const usersRoute = require("./routes/users");
 const departmentsRoute = require("./routes/departments");
+const equipmentsRoute = require("./routes/equipments");
 
 app.use("/api/users", usersRoute);
 app.use("/api/departments", departmentsRoute);
+app.use("/api/equipments", equipmentsRoute);
 
 mongoose.connect(
   process.env.MONGODB_URI,
