@@ -41,7 +41,7 @@ const Equipments = () => {
           </TableHead>
           <TableBody>
             {equipments?.map((row) => (
-              <TableRow key={row.uuid}>
+              <TableRow key={row._id}>
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.departmentName}</TableCell>
                 <TableCell>{row.ownedByName}</TableCell>

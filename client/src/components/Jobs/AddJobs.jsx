@@ -11,7 +11,6 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import { generateUuid } from "../Helpers/Helpers";
 import { createJob } from "./APIJobs";
 import { getDepartments } from "../Departments/APIDepartments";
 import { useSelector } from "react-redux";
@@ -63,18 +62,17 @@ export default function AddJobs() {
   };
   const handleSubmit = (event) => {
     const createdByName = users.filter((current) => {
-      if (current.uuid === createdBy) return current.name;
+      if (current._id === createdBy) return current.name;
     })[0].name;
     const assignedToName = users.filter((current) => {
-      if (current.uuid === assignedTo) return current.name;
+      if (current._id === assignedTo) return current.name;
     })[0].name;
     const departmentName = departments.filter((current) => {
-      if (current.uuid === department) return current.name;
+      if (current._id === department) return current.name;
     })[0].name;
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const job = {
-      uuid: generateUuid(),
       name: data.get("name"),
       description: data.get("description"),
       department,
@@ -176,10 +174,7 @@ export default function AddJobs() {
                   >
                     {departments?.map((department) => {
                       return (
-                        <MenuItem
-                          value={department.uuid}
-                          name={department.name}
-                        >
+                        <MenuItem value={department._id} name={department.name}>
                           {department.name}
                         </MenuItem>
                       );
@@ -199,7 +194,7 @@ export default function AddJobs() {
                   >
                     {users?.map((user) => {
                       return (
-                        <MenuItem value={user.uuid} name={user.name}>
+                        <MenuItem value={user._id} name={user.name}>
                           {user.name}
                         </MenuItem>
                       );
@@ -219,7 +214,7 @@ export default function AddJobs() {
                   >
                     {users?.map((user) => {
                       return (
-                        <MenuItem value={user.uuid} name={user.name}>
+                        <MenuItem value={user._id} name={user.name}>
                           {user.name}
                         </MenuItem>
                       );

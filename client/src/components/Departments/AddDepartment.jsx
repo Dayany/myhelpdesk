@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Grid, TextField } from "@mui/material";
-import { generateUuid } from "../Helpers/Helpers";
 import { createDepartment } from "./APIDepartments";
 
 const style = {
@@ -28,7 +27,6 @@ export default function AddDepartment() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const department = {
-      uuid: generateUuid(),
       name: data.get("departmentName"),
       city: data.get("city"),
       state: data.get("state"),

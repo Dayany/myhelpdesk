@@ -44,7 +44,7 @@ const Jobs = () => {
           </TableHead>
           <TableBody>
             {jobs?.map((row) => (
-              <TableRow key={row.uuid}>
+              <TableRow key={row._id}>
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.departmentName}</TableCell>
                 <TableCell>{STATUS[row.status]}</TableCell>
