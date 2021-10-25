@@ -38,6 +38,7 @@ const Jobs = () => {
               <TableCell>Job Name</TableCell>
               <TableCell>Department</TableCell>
               <TableCell>Status:</TableCell>
+              <TableCell>Equipment:</TableCell>
               <TableCell>Created By:</TableCell>
               <TableCell>Assigned to:</TableCell>
             </TableRow>
@@ -48,6 +49,7 @@ const Jobs = () => {
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.departmentName}</TableCell>
                 <TableCell>{STATUS[row.status]}</TableCell>
+                <TableCell>{row.equipmentName}</TableCell>
                 <TableCell>{row.createdByName}</TableCell>
                 <TableCell>{row.assignedToName}</TableCell>
               </TableRow>

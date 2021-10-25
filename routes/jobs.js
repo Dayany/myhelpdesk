@@ -22,10 +22,14 @@ router.post("/", async (req, res) => {
     assignedToName: req.body.assignedToName,
     createdBy: req.body.createdBy,
     createdByName: req.body.createdByName,
+    equipment: req.body.equipment,
+    equipmentName: req.body.equipmentName,
   });
+  console.log(job);
 
   try {
     const savedJob = await job.save();
+    console.log(savedJob);
     res.json(savedJob);
   } catch (error) {
     res.json({ message: error });

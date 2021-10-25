@@ -29,6 +29,13 @@ const JobSchema = mongoose.Schema({
   assignedToName: {
     type: String,
   },
+  equipment: {
+    type: Schema.Types.ObjectId,
+    ref: "Equipment",
+  },
+  equipmentName: {
+    type: String,
+  },
   status: {
     type: Number,
   },

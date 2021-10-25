@@ -15,6 +15,7 @@ import { createJob } from "./APIJobs";
 import { getDepartments } from "../Departments/APIDepartments";
 import { useSelector } from "react-redux";
 import { getUsers } from "../Users/APIUsers";
+import { getEquipments } from "../Equipments/APIEquipments";
 import { STATUS } from "../../constants";
 
 const style = {
@@ -34,16 +35,19 @@ export default function AddJobs() {
   const [department, setDepartment] = useState("");
   const [assignedTo, setAssignedTo] = useState("");
   const [createdBy, setCreatedBy] = useState("");
+  const [equipment, setEquipment] = useState("");
   const [status, setStatus] = useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const departments = useSelector((state) => state.departments.departments);
   const users = useSelector((state) => state.users.users);
+  const equipments = useSelector((state) => state.equipments.equipments);
 
   useEffect(() => {
     getDepartments();
     getUsers();
+    getEquipments();
   }, []);
 
   const handleChange = (event) => {
@@ -57,6 +61,10 @@ export default function AddJobs() {
     setCreatedBy(event.target.value);
   };
 
+  const handleChangeEquipment = (event) => {
+    setEquipment(event.target.value);
+  };
+
   const handleChangeStatus = (event) => {
     setStatus(event.target.value);
   };
@@ -66,6 +74,9 @@ export default function AddJobs() {
     })[0].name;
     const assignedToName = users.filter((current) => {
       if (current._id === assignedTo) return current.name;
+    })[0].name;
+    const equipmentName = equipments.filter((current) => {
+      if (current._id === equipment) return current.name;
     })[0].name;
     const departmentName = departments.filter((current) => {
       if (current._id === department) return current.name;
@@ -81,6 +92,8 @@ export default function AddJobs() {
       assignedToName,
       createdBy,
       createdByName,
+      equipment,
+      equipmentName,
       status,
     };
 
@@ -176,6 +189,26 @@ export default function AddJobs() {
                       return (
                         <MenuItem value={department._id} name={department.name}>
                           {department.name}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <FormControl fullWidth>
+                  <InputLabel id="select-equipment">Equipment</InputLabel>
+                  <Select
+                    labelId="select-equipment"
+                    id="equipment-select"
+                    value={equipment}
+                    label="Department"
+                    onChange={handleChangeEquipment}
+                  >
+                    {equipments?.map((equipment) => {
+                      return (
+                        <MenuItem value={equipment._id} name={equipment.name}>
+                          {equipment.name}
                         </MenuItem>
                       );
                     })}
