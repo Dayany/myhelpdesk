@@ -41,7 +41,6 @@ router.post("/login", async (req, res) => {
 
   const user = await User.findOne({ username }).lean();
 
-  console.log(user);
   if (!user) {
     return res.json({
       status: "error",
