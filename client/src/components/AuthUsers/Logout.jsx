@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { logout } from "./APIUsers";
+import { logout } from "./APIAuthUsers";
 
 const Logout = () => {
   const history = useHistory();

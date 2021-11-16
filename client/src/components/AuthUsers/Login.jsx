@@ -1,7 +1,7 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { validateLogin } from "./APIUsers";
+import { validateLogin } from "./APIAuthUsers";
 
 const Login = () => {
   const history = useHistory();
