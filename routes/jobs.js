@@ -25,7 +25,6 @@ router.post("/", async (req, res) => {
     equipment: req.body.equipment,
     equipmentName: req.body.equipmentName,
   });
-  console.log(job);
 
   try {
     const savedJob = await job.save();
