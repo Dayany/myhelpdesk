@@ -1,15 +1,21 @@
 const jwt = require("jsonwebtoken");
 
-module.exports = function authenticateToken(req, res, next) {
-  const authHeader = req.headers["Authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
+const auth = async (req, res, next) => {
+  // check header
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith("Bearer")) {
+    throw new Error("Authentication invalid");
+  }
+  const token = authHeader.split(" ")[1];
 
-  if (token == null) return res.status(401);
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) return res.status(403);
-
-    req.user = user;
+  try {
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    // attach the user to the job routes
+    req.user = { userId: payload.userId };
     next();
-  });
+  } catch (error) {
+    throw new Error("Authentication invalid");
+  }
 };
+
+module.exports = auth;
