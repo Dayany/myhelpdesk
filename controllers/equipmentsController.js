@@ -1,11 +1,12 @@
 const Equipment = require("../models/Equipment");
+const { StatusCodes } = require("http-status-codes");
 
 const getEquipments = async (req, res) => {
   try {
     const equipments = await Equipment.find();
-    res.json(equipments);
+    res.status(StatusCodes.OK).json(equipments);
   } catch (err) {
-    res.json({ message: err });
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: err });
   }
 };
 
@@ -20,9 +21,9 @@ const createEquipment = async (req, res) => {
 
   try {
     const savedEquipment = await equipment.save();
-    res.json(savedEquipment);
+    res.status(StatusCodes.OK).json(savedEquipment);
   } catch (error) {
-    res.json({ message: error });
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error });
   }
 };
 

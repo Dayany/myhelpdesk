@@ -1,11 +1,12 @@
 const Job = require("../models/Job");
+const { StatusCodes } = require("http-status-codes");
 
 const getJobs = async (req, res) => {
   try {
     const jobs = await Job.find();
-    res.json(jobs);
+    res.status(StatusCodes.OK).json(jobs);
   } catch (err) {
-    res.json({ message: err });
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: err });
   }
 };
 
@@ -26,10 +27,9 @@ const createJob = async (req, res) => {
 
   try {
     const savedJob = await job.save();
-    console.log(savedJob);
-    res.json(savedJob);
+    res.status(StatusCodes.OK).json(savedJob);
   } catch (error) {
-    res.json({ message: error });
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: err });
   }
 };
 

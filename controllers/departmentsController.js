@@ -1,11 +1,12 @@
 const Department = require("../models/Department");
+const { StatusCodes } = require("http-status-codes");
 
 const getDepartments = async (req, res) => {
   try {
     const departments = await Department.find();
-    res.json(departments);
+    res.status(StatusCodes.OK).json(departments);
   } catch (err) {
-    res.json({ message: err });
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: err });
   }
 };
 
@@ -19,9 +20,9 @@ const createDepartment = async (req, res) => {
 
   try {
     const savedDepartment = await department.save();
-    res.json(savedDepartment);
+    res.status(StatusCodes.OK).json(savedDepartment);
   } catch (error) {
-    res.json({ message: error });
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: err });
   }
 };
 

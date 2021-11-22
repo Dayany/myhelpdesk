@@ -1,12 +1,13 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const { StatusCodes } = require("http-status-codes");
 
 const getUsers = async (req, res) => {
   try {
     const users = await User.find();
-    res.json(users);
+    res.status(StatusCodes.OK).json(users);
   } catch (err) {
-    res.json({ message: err });
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: err });
   }
 };
 
@@ -23,10 +24,9 @@ const registerUser = async (req, res) => {
       departmentName: req.body.departmentName,
       isActive: req.body.isActive,
     });
-    res.json(res);
+    res.status(StatusCodes.OK).json(res);
   } catch (error) {
-    res.json({ message: error });
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ message: error });
   }
 };
-
 module.exports = { getUsers, registerUser };
